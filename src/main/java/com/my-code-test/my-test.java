@@ -36,24 +36,29 @@ public class MyTest {
     }
 
     // 🔴 Vulnerability: SQL Injection
-    public void unsafeQuery(String user) {
+ public void unsafeQuery(String user) {
 
-        try {
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/test",
-                    "root",
-                    DB_PASSWORD
-            );
+    String sql = "SELECT * FROM users WHERE name = ?";
 
-            // Statement st = con.createStatement();
+    try (
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/test",
+            "root",
+            DB_PASSWORD
+        );
+        PreparedStatement ps = con.prepareStatement(sql)
+    ) {
 
-            // Bad: user input directly in SQL
-            // String sql = "SELECT * FROM users WHERE name = '" + user + "'";
-            // st.execute(sql);
+        // Prevent SQL Injection
+        ps.setString(1, user);
 
-        } catch (Exception e) {
-            e.printStackTrace(); // 🔴 Code smell: printStackTrace
-        }
+        ps.executeQuery();
+
+    } catch (Exception e) {
+        // Proper logging instead of printStackTrace
+        logger.error("DB error", e);
+    }
+}
     }
 
     // 🔴 Duplication (same logic twice)
