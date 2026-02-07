@@ -45,11 +45,11 @@ public class MyTest {
                     DB_PASSWORD
             );
 
-            Statement st = con.createStatement();
+            // Statement st = con.createStatement();
 
             // Bad: user input directly in SQL
-            String sql = "SELECT * FROM users WHERE name = '" + user + "'";
-            st.execute(sql);
+            // String sql = "SELECT * FROM users WHERE name = '" + user + "'";
+            // st.execute(sql);
 
         } catch (Exception e) {
             e.printStackTrace(); // 🔴 Code smell: printStackTrace
