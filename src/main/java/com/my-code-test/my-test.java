@@ -16,7 +16,7 @@ public class MyTest {
 
     // 🔴 Bug: Division by zero
     public int crash() {
-        return 10 / 0;
+        return 10 / 5;
     }
 
     // 🔴 Code Smell: Cognitive complexity
