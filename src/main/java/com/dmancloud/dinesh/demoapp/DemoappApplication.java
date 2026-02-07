@@ -17,10 +17,10 @@ public class DemoappApplication {
 // }
 
 
-public void login() {
-    System.out.println("Login");
-}
+// public void login() {
+//     System.out.println("Login");
+// }
 
-public void loginCopy() {
-    System.out.println("Login");
-}
+// public void loginCopy() {
+//     System.out.println("Login");
+// }
